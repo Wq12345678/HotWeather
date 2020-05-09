@@ -1,4 +1,5 @@
 package com.coolweather.android;
+
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,11 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.coolweather.android.util.HttpUtil;
-import com.coolweather.android.util.Utility;
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
+import com.coolweather.android.util.HttpUtil;
+import com.coolweather.android.util.Utility;
 import com.coolweather.coolweather.R;
 
 import org.litepal.crud.DataSupport;
