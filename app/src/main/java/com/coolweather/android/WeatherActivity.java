@@ -1,17 +1,16 @@
 package com.coolweather.android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.coolweather.android.gson.Forecast;
 import com.coolweather.android.gson.Weather;
@@ -23,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
@@ -83,7 +83,7 @@ public class WeatherActivity extends AppCompatActivity {
         // 组装地址并发出请求
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
-            public void onResponse(@NotNull okhttp3.Call call, @NotNull Response response) throws IOException {
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 final String responseText = response.body().string();
                 final  Weather weather = Utility.handleWeatherResponse(responseText);   // 将返回数据转换为Weather对象
                 runOnUiThread(new Runnable() {
@@ -101,11 +101,6 @@ public class WeatherActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
-
-            @Override
-            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
-                
             }
 
             @Override

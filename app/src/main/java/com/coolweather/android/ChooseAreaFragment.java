@@ -1,6 +1,7 @@
 package com.coolweather.android;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,7 @@ public class ChooseAreaFragment extends Fragment {
     private City selectedCity;
     // 当前选中的级别
     private int currentLevel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class ChooseAreaFragment extends Fragment {
         listView.setAdapter(adapter);
         return view;
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -84,21 +87,18 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
+                } else if (currentLevel == LEVEL_COUNTY) {
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);    // 向intent传入WeatherId
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentLevel == LEVEL_COUNTY) {
-                    queryCities();
-                } else if (currentLevel == LEVEL_CITY) {
-                    queryProvinces();
-                }
-            }
-        });
-        queryProvinces();   // 加载省级数据
+
     }
+
     /**
      * 查询全国所有的省，优先从数据库中查，如果没有查询到再到服务器上查
      */
@@ -119,6 +119,7 @@ public class ChooseAreaFragment extends Fragment {
             queryFromServer(address, "province");   // 后面会定义此方法
         }
     }
+
     /**
      * 查询选中县内所有的市，优先从数据库中查，如果没有查询到再到服务器上查
      */
@@ -141,6 +142,7 @@ public class ChooseAreaFragment extends Fragment {
             queryFromServer(address, "city");
         }
     }
+
     /**
      * 查询选中市内所有的县，优先从数据库中查询，如果没有查询到就从服务器中查询数据
      */
@@ -164,6 +166,7 @@ public class ChooseAreaFragment extends Fragment {
             queryFromServer(address, "county");
         }
     }
+
     /**
      * 根据传入的地址和类型从服务器中查询省市县数据
      */
@@ -180,6 +183,7 @@ public class ChooseAreaFragment extends Fragment {
                     }
                 });
             }
+
             @Override
             public void onResponse(okhttp3.Call call, Response response) throws IOException {
                 // 接收响应的数据并做对应处理
@@ -210,6 +214,7 @@ public class ChooseAreaFragment extends Fragment {
             }
         });
     }
+
     /**
      * 显示进度对话框
      */
@@ -220,6 +225,7 @@ public class ChooseAreaFragment extends Fragment {
             progressDialog.setCanceledOnTouchOutside(false);
         }
     }
+
     /**
      * 关闭进度对话框
      */
