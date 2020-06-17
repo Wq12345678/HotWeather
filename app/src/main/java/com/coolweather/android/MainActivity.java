@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
-import com.coolweather.coolweather.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -16,7 +16,6 @@ import com.coolweather.android.gson.Forecast;
 import com.coolweather.android.gson.Weather;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
-import com.coolweather.coolweather.R;
 
 import org.jetbrains.annotations.NotNull;
 

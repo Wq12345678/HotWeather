@@ -22,36 +22,42 @@
         android:layout_margin="15dp">
 
         <!-- 显示AQI指数 -->
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" >
             <TextView
                 android:id="@+id/aqi_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="#fff"
-                android:textSize="40sp" />
-
+                android:textSize="40sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:text="AQI 指数"
-                android:textColor="#fff" />
+                android:textColor="#fff"/>
 
-        </LinearLayout>
-
+    </LinearLayout>
+</RelativeLayout>
         <!-- 显示PM2.5指数 -->
-        <LinearLayout
-            android:orientation="vertical"
+<RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
             <TextView
                 android:id="@+id/pm25_text"
                 android:layout_width="wrap_content"
@@ -66,9 +72,7 @@
                 android:layout_gravity="center"
                 android:text="PM2.5 指数"
                 android:textColor="#fff" />
-
-        </LinearLayout>
-
     </LinearLayout>
-
+</RelativeLayout>
+</LinearLayout>
 </LinearLayout>

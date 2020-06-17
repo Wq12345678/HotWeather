@@ -22,7 +22,6 @@ import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
-import com.coolweather.coolweather.R;
 
 import org.litepal.crud.DataSupport;
 
@@ -224,6 +223,7 @@ public class ChooseAreaFragment extends Fragment {
             progressDialog.setMessage("正在加载...");
             progressDialog.setCanceledOnTouchOutside(false);
         }
+        progressDialog.show();
     }
 
     /**
